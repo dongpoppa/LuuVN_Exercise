@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "1261da0e-fdf2-45b2-a46f-cacdd0db65db",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 594,
+  "height": 287,
+  "platformSettings": {},
+  "subMetas": {
+    "TournamentButton": {
+      "ver": "1.0.6",
+      "uuid": "e144d1e0-11af-46de-b48b-eba6b0f6afd1",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "1261da0e-fdf2-45b2-a46f-cacdd0db65db",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -6.5,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 581,
+      "height": 287,
+      "rawWidth": 594,
+      "rawHeight": 287,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

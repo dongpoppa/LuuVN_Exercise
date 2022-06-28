@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "231d2dd3-3406-464e-982a-7f47cd8d2cad",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 12,
+  "height": 11,
+  "platformSettings": {},
+  "subMetas": {
+    "CardAttackIcon": {
+      "ver": "1.0.6",
+      "uuid": "1954fedf-5676-4278-8ffe-2e5389802bad",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "231d2dd3-3406-464e-982a-7f47cd8d2cad",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 12,
+      "height": 11,
+      "rawWidth": 12,
+      "rawHeight": 11,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

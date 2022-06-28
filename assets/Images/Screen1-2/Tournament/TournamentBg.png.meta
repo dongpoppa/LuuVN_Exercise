@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "9a4656f9-de25-476b-b9c9-1f0bf0c67d77",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 3840,
+  "height": 2160,
+  "platformSettings": {},
+  "subMetas": {
+    "TournamentBg": {
+      "ver": "1.0.6",
+      "uuid": "6ddba64f-5277-4703-9cfa-df7396bad86a",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "9a4656f9-de25-476b-b9c9-1f0bf0c67d77",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 3840,
+      "height": 2160,
+      "rawWidth": 3840,
+      "rawHeight": 2160,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

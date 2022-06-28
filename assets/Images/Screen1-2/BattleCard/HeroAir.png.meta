@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "56eab5a1-7f41-423e-af31-a745eca25460",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 164,
+  "height": 142,
+  "platformSettings": {},
+  "subMetas": {
+    "HeroAir": {
+      "ver": "1.0.6",
+      "uuid": "e9fd310d-cb6b-4bb9-8c54-316dbb11a262",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "56eab5a1-7f41-423e-af31-a745eca25460",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": 0,
+      "trimX": 1,
+      "trimY": 0,
+      "width": 163,
+      "height": 142,
+      "rawWidth": 164,
+      "rawHeight": 142,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

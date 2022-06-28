@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "15817315-e3d6-4efd-901b-e800297c9819",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 320,
+  "height": 420,
+  "platformSettings": {},
+  "subMetas": {
+    "CreateNewTeamButton": {
+      "ver": "1.0.6",
+      "uuid": "f3d5c4db-d459-423f-a00e-053524c2419f",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "15817315-e3d6-4efd-901b-e800297c9819",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 320,
+      "height": 420,
+      "rawWidth": 320,
+      "rawHeight": 420,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
