@@ -120,6 +120,10 @@ export default class HandZone extends cc.Component {
       this.cards = this.cards.filter(item => item.name !== node.name)
       node.destroy()
       this.cardZone.getComponent("CardZone").addNewCard()
+      setTimeout(() => {
+        this.reSoftCard()
+      }, 500)
+      
     } else {
       // return to hand zone
       cc.log('return to hand zone')

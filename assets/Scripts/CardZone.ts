@@ -10,13 +10,11 @@ import allCretures from './AllCretures'
 @ccclass
 export default class CardZone extends cc.Component {
 
-  @property([cc.Prefab])
-  cards: cc.Prefab[] = [];
-
-  cards1: cc.Prefab[] = [];
-
   @property(cc.Node)
   handZone: cc.Node = null;
+
+  @property(cc.Prefab)
+  cardBack: cc.Prefab = null;
 
   cardNodes: cc.Node[] = []
 
@@ -28,6 +26,12 @@ export default class CardZone extends cc.Component {
     const creaturesName = Array.from({ length: 36 }, (_, i) => `Creature_${i + 1}`)
 
     const resouces = [...cardCover, ...cardFront, ...creatureBgName, ...creaturesName]
+
+    for (let index = 0; index < 5; index++) {
+      setTimeout(() => {
+        this.drawACard()
+      }, 150 * index);
+    }
 
     cc.assetManager.loadBundle('Prefab', (errPrefab, prefab) => {
       prefab.load("Card", (errCard: any, card: cc.Prefab) => {
@@ -65,8 +69,31 @@ export default class CardZone extends cc.Component {
 
   addNewCard() {
     if (this.cardNodes[0]) {
-      this.handZone.getComponent("HandZone").addNewCard((this.cardNodes[0]))
-      this.cardNodes.splice(0, 1)
+      this.drawACard()
+      setTimeout(() => {
+        this.handZone.getComponent("HandZone").addNewCard((this.cardNodes[0]))
+        this.cardNodes.splice(0, 1)
+      }, 500)
     }
+  }
+
+  drawACard() {
+    const newNode = cc.instantiate(this.cardBack)
+    newNode.setPosition(760, -137)
+    newNode.setScale(0.74, 0.5)
+    newNode.anchorX = 0.5
+    newNode.anchorY = 0.5
+    newNode.width = 201
+    newNode.height = 298
+    newNode.skewX = -21
+
+    this.node.addChild(newNode)
+    cc.tween(newNode)
+      .to(0.5, { x: 340, y: -650, skewX: 0, scaleY: 0.7 }, { easing: 'quadInOut' })
+      .start();
+
+    setTimeout(() => {
+      newNode.destroy()
+    }, 500);
   }
 }
