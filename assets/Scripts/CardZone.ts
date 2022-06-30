@@ -13,12 +13,16 @@ export default class CardZone extends cc.Component {
   @property(cc.Node)
   handZone: cc.Node = null;
 
+  @property(cc.Node)
+  opponentHandZone: cc.Node = null;
+
   @property(cc.Prefab)
   cardBack: cc.Prefab = null;
 
   cardNodes: cc.Node[] = []
 
   onLoad() {
+    this.opponentHandZone.angle = 180
 
     const cardCover = ["CardCoverFire", "CardCoverAir", "CardCoverEarth", "CardCoverWater"]
     const cardFront = ["CardFrontFire", "CardFrontAir", "CardFrontEarth", "CardFrontWater"]
@@ -30,6 +34,7 @@ export default class CardZone extends cc.Component {
     for (let index = 0; index < 5; index++) {
       setTimeout(() => {
         this.drawACard()
+        this.opponentDrawACard()
       }, 150 * index);
     }
 
@@ -57,9 +62,19 @@ export default class CardZone extends cc.Component {
               return returnCard
             })
 
+            //handZone
             const beginCards = this.cardNodes.slice(0, 5)
             this.handZone.getComponent("HandZone").cards = beginCards;
             this.handZone.getComponent("HandZone").onLoad();
+
+            //opponentHandZone
+            this.opponentHandZone.getComponent("HandZone").cards = Array.from({ length: 5 }, (_, i) => {
+              const node = cc.instantiate(this.cardBack)
+              node.name = node.name + i
+              return node
+            });
+            this.opponentHandZone.getComponent("HandZone").onLoad();
+
             this.cardNodes.splice(0, 5)
           })
         });
@@ -72,6 +87,16 @@ export default class CardZone extends cc.Component {
       this.drawACard()
       setTimeout(() => {
         this.handZone.getComponent("HandZone").addNewCard((this.cardNodes[0]))
+        this.cardNodes.splice(0, 1)
+      }, 500)
+    }
+  }
+
+  opponentAddNewCard() {
+    if (this.cardNodes[0]) {
+      this.opponentDrawACard()
+      setTimeout(() => {
+        this.opponentHandZone.getComponent("HandZone").addNewCard((this.cardNodes[0]))
         this.cardNodes.splice(0, 1)
       }, 500)
     }
@@ -90,6 +115,26 @@ export default class CardZone extends cc.Component {
     this.node.addChild(newNode)
     cc.tween(newNode)
       .to(0.5, { x: 340, y: -650, skewX: 0, scaleY: 0.7 }, { easing: 'quadInOut' })
+      .start();
+
+    setTimeout(() => {
+      newNode.destroy()
+    }, 500);
+  }
+
+  opponentDrawACard() {
+    const newNode = cc.instantiate(this.cardBack)
+    newNode.setPosition(648, 54)
+    newNode.setScale(0.6, 0.42)
+    newNode.anchorX = 0.5
+    newNode.anchorY = 0.5
+    newNode.width = 201
+    newNode.height = 298
+    newNode.skewX = -20
+
+    this.node.addChild(newNode)
+    cc.tween(newNode)
+      .to(0.5, { x: -100, y: 1300, skewX: 0, scaleY: 0.7 }, { easing: 'quadInOut' })
       .start();
 
     setTimeout(() => {

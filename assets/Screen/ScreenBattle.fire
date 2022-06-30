@@ -75,7 +75,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 40
+        "__id__": 42
       }
     ],
     "_prefab": null,
@@ -144,7 +144,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 39
+        "__id__": 41
       }
     ],
     "_prefab": null,
@@ -467,12 +467,15 @@
       },
       {
         "__id__": 36
+      },
+      {
+        "__id__": 38
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 38
+        "__id__": 40
       }
     ],
     "_prefab": null,
@@ -1156,8 +1159,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        627.939,
-        33.737,
+        628,
+        34,
         0,
         0,
         0,
@@ -1831,7 +1834,87 @@
     "cardZone": {
       "__id__": 9
     },
+    "isOpponent": false,
     "_id": "92YJZPZ6BN5KLELyxozysC"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "OpponentHandZone",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 9
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 39
+      }
+    ],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 980,
+      "height": 210
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_trs": {
+      "__type__": "TypedArray",
+      "ctor": "Float64Array",
+      "array": [
+        0,
+        530,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": false,
+    "_groupIndex": 0,
+    "groupIndex": 0,
+    "_id": "8fnqWOSRlFcqtW0AbUL9dU"
+  },
+  {
+    "__type__": "a2b7czBD4NHA6P5KFxkGDHT",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 38
+    },
+    "_enabled": true,
+    "battleZone": {
+      "__id__": 34
+    },
+    "cardZone": {
+      "__id__": 9
+    },
+    "isOpponent": true,
+    "_id": "89CSve4hFN3oND81b3xVl4"
   },
   {
     "__type__": "88aa01BCHBFFprzKK6ejZmW",
@@ -1843,6 +1926,9 @@
     "_enabled": true,
     "handZone": {
       "__id__": 36
+    },
+    "opponentHandZone": {
+      "__id__": 38
     },
     "cardBack": {
       "__uuid__": "ea7d699e-ddb5-4670-b29e-490bc7663b62"

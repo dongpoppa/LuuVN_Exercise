@@ -18,6 +18,9 @@ export default class HandZone extends cc.Component {
   @property(cc.Node)
   cardZone: CardZone = null
 
+  @property(cc.Boolean)
+  isOpponent: boolean = true
+
   cards: cc.Node[] = [];
 
   currentCardAtr: CardAtribute = new CardAtribute()
@@ -38,7 +41,7 @@ export default class HandZone extends cc.Component {
       node.setPosition(x, -230, index)
       node.setScale(0.7, 0.7)
       node.angle = -(cardIndexs[index] * 4)
-      node.getChildByName("CardManaIcon").getComponent("ShowUp").isShow = true
+      this.isOpponent ? '' : node.getChildByName("CardManaIcon").getComponent("ShowUp").isShow = true
       this.node.addChild(node)
       setTimeout(() => {
         cc.tween(node)
@@ -47,8 +50,8 @@ export default class HandZone extends cc.Component {
           .start()
       }, 100 * index)
 
-      node.on(cc.Node.EventType.TOUCH_START, this.scaleUp, this)
-      node.on(cc.Node.EventType.TOUCH_END, this.scaleDown, this)
+      this.isOpponent ? '' : node.on(cc.Node.EventType.TOUCH_START, this.scaleUp, this)
+      this.isOpponent ? '' : node.on(cc.Node.EventType.TOUCH_END, this.scaleDown, this)
     })
   }
 
@@ -64,10 +67,10 @@ export default class HandZone extends cc.Component {
 
     card.setPosition(x, -230, index)
     card.setScale(0.7, 0.7)
-    card.getChildByName("CardManaIcon").getComponent("ShowUp").isShow = true
+    this.isOpponent ? '' : card.getChildByName("CardManaIcon").getComponent("ShowUp").isShow = true
 
-    card.on(cc.Node.EventType.TOUCH_START, this.scaleUp, this)
-    card.on(cc.Node.EventType.TOUCH_END, this.scaleDown, this)
+    this.isOpponent ? '' : card.on(cc.Node.EventType.TOUCH_START, this.scaleUp, this)
+    this.isOpponent ? '' : card.on(cc.Node.EventType.TOUCH_END, this.scaleDown, this)
     this.node.addChild(card)
 
   }
@@ -93,8 +96,8 @@ export default class HandZone extends cc.Component {
     cc.tween(node)
       .to(0.05, { y: this.currentCardAtr.y <= 0 ? 40 : node.y, scale: 1, zIndex: 100, angle: 0 }, { easing: 'quadInOut' })
       .start();
-    node.on(cc.Node.EventType.TOUCH_END, this.scaleDown, this)
-    node.on(cc.Node.EventType.TOUCH_MOVE, this.moveCard, this)
+    this.isOpponent ? '' : node.on(cc.Node.EventType.TOUCH_END, this.scaleDown, this)
+    this.isOpponent ? '' : node.on(cc.Node.EventType.TOUCH_MOVE, this.moveCard, this)
   }
 
   scaleDown(event: cc.Event.EventMouse) {
@@ -123,7 +126,7 @@ export default class HandZone extends cc.Component {
       setTimeout(() => {
         this.reSoftCard()
       }, 500)
-      
+
     } else {
       // return to hand zone
       cc.log('return to hand zone')
