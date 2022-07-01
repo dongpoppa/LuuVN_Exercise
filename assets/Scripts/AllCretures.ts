@@ -1,7 +1,7 @@
 const cardCover = ["CardCoverFire", "CardCoverAir", "CardCoverEarth", "CardCoverWater"]
 const cardFront = ["CardFrontFire", "CardFrontAir", "CardFrontEarth", "CardFrontWater"]
 
-export default Array.from({ length: 36 }, (_, i) => {
+export default Array.from({ length: 12 }, (_, i) => {
   return {
     creatureBg: `Creature_${i + 1}_Bg`,
     cardCover: cardCover[i % 4],

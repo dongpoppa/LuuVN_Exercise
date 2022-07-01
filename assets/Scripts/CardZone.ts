@@ -33,8 +33,8 @@ export default class CardZone extends cc.Component {
 
     for (let index = 0; index < 5; index++) {
       setTimeout(() => {
-        this.drawACard()
-        this.opponentDrawACard()
+        this.drawACard(true)
+        this.opponentDrawACard(true)
       }, 150 * index);
     }
 
@@ -84,59 +84,78 @@ export default class CardZone extends cc.Component {
 
   addNewCard() {
     if (this.cardNodes[0]) {
+      const nextCard = this.cardNodes[0]
       this.drawACard()
       setTimeout(() => {
-        this.handZone.getComponent("HandZone").addNewCard((this.cardNodes[0]))
-        this.cardNodes.splice(0, 1)
+        this.handZone.getComponent("HandZone").addNewCard(nextCard)
       }, 500)
     }
   }
 
   opponentAddNewCard() {
     if (this.cardNodes[0]) {
+      const nextCard = this.cardNodes[0]
       this.opponentDrawACard()
       setTimeout(() => {
-        this.opponentHandZone.getComponent("HandZone").addNewCard((this.cardNodes[0]))
-        this.cardNodes.splice(0, 1)
+        this.opponentHandZone.getComponent("HandZone").addNewCard(nextCard)
       }, 500)
     }
   }
 
-  drawACard() {
-    const newNode = cc.instantiate(this.cardBack)
-    newNode.setPosition(760, -137)
-    newNode.setScale(0.74, 0.5)
-    newNode.anchorX = 0.5
-    newNode.anchorY = 0.5
-    newNode.width = 201
-    newNode.height = 298
-    newNode.skewX = -21
-
-    this.node.addChild(newNode)
-    cc.tween(newNode)
-      .to(0.5, { x: 340, y: -650, skewX: 0, scaleY: 0.7 }, { easing: 'quadInOut' })
-      .start();
+  drawACard(isFirstTime?: boolean) {
+    this.cardNodes.splice(0, 1)
+    let newNode;
+    if (this.cardNodes.length > 4 || isFirstTime) {
+      newNode = cc.instantiate(this.cardBack)
+      newNode.setPosition(760, -137)
+      newNode.setScale(0.74, 0.5)
+      newNode.anchorX = 0.5
+      newNode.anchorY = 0.5
+      newNode.width = 201
+      newNode.height = 298
+      newNode.skewX = -21
+      this.node.addChild(newNode)
+      cc.tween(newNode)
+        .to(0.5, { x: 340, y: -650, skewX: 0, scaleY: 0.7 }, { easing: 'quadInOut' })
+        .start();
+    } else {
+      const pickZone = this.node.getChildByName("PickZone")
+      newNode = pickZone.children[pickZone.childrenCount - 1]
+      console.log(newNode)
+      cc.tween(newNode)
+        .to(0.5, { x: -950, y: -940, skewX: 0, scaleY: 0.7 }, { easing: 'quadInOut' })
+        .start();
+    }
 
     setTimeout(() => {
       newNode.destroy()
     }, 500);
   }
 
-  opponentDrawACard() {
-    const newNode = cc.instantiate(this.cardBack)
-    newNode.setPosition(648, 54)
-    newNode.setScale(0.6, 0.42)
-    newNode.anchorX = 0.5
-    newNode.anchorY = 0.5
-    newNode.width = 201
-    newNode.height = 298
-    newNode.skewX = -20
-
-    this.node.addChild(newNode)
-    cc.tween(newNode)
-      .to(0.5, { x: -100, y: 1300, skewX: 0, scaleY: 0.7 }, { easing: 'quadInOut' })
-      .start();
-
+  opponentDrawACard(isFirstTime?: boolean) {
+    this.cardNodes.splice(0, 1)
+    let newNode;
+    if (this.cardNodes.length > 4 || isFirstTime) {
+      newNode = cc.instantiate(this.cardBack)
+      newNode.setPosition(648, 54)
+      newNode.setScale(0.6, 0.42)
+      newNode.anchorX = 0.5
+      newNode.anchorY = 0.5
+      newNode.width = 201
+      newNode.height = 298
+      newNode.skewX = -20
+      this.node.addChild(newNode)
+      cc.tween(newNode)
+        .to(0.5, { x: -100, y: 1300, skewX: 0, scaleY: 0.7 }, { easing: 'quadInOut' })
+        .start();
+    } else {
+      const pickZone = this.node.getChildByName("OpponentPickZone")
+      newNode = pickZone.children[pickZone.childrenCount - 1]
+      console.log(newNode)
+      cc.tween(newNode)
+        .to(0.5, { x: -120, y: 1360, skewX: 0, scaleY: 0.7 }, { easing: 'quadInOut' })
+        .start();
+    }
     setTimeout(() => {
       newNode.destroy()
     }, 500);
