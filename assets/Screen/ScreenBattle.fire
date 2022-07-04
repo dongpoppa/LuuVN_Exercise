@@ -75,7 +75,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 41
+        "__id__": 42
       }
     ],
     "_prefab": null,
@@ -144,7 +144,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 40
+        "__id__": 41
       }
     ],
     "_prefab": null,
@@ -466,16 +466,16 @@
         "__id__": 33
       },
       {
-        "__id__": 35
+        "__id__": 36
       },
       {
-        "__id__": 37
+        "__id__": 38
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 39
+        "__id__": 40
       }
     ],
     "_prefab": null,
@@ -1662,6 +1662,9 @@
     "_components": [
       {
         "__id__": 34
+      },
+      {
+        "__id__": 35
       }
     ],
     "_prefab": null,
@@ -1708,9 +1711,30 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 2,
+    "groupIndex": 2,
     "_id": "94kFNP9OhPJI3N8YW4rQGx"
+  },
+  {
+    "__type__": "cc.BoxCollider",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 33
+    },
+    "_enabled": true,
+    "tag": 0,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 980,
+      "height": 210
+    },
+    "_id": "24o4vRbS5Oda/QMtVTVgT/"
   },
   {
     "__type__": "b04a1H46+NOY5sR5PJUbSuB",
@@ -1733,7 +1757,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 36
+        "__id__": 37
       }
     ],
     "_prefab": null,
@@ -1789,7 +1813,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 35
+      "__id__": 36
     },
     "_enabled": true,
     "battleZone": {
@@ -1812,7 +1836,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 38
+        "__id__": 39
       }
     ],
     "_prefab": null,
@@ -1868,7 +1892,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 37
+      "__id__": 38
     },
     "_enabled": true,
     "battleZone": {
@@ -1889,10 +1913,10 @@
     },
     "_enabled": true,
     "handZone": {
-      "__id__": 35
+      "__id__": 36
     },
     "opponentHandZone": {
-      "__id__": 37
+      "__id__": 38
     },
     "cardBack": {
       "__uuid__": "ea7d699e-ddb5-4670-b29e-490bc7663b62"

@@ -121,7 +121,6 @@ export default class CardZone extends cc.Component {
     } else {
       const pickZone = this.node.getChildByName("PickZone")
       newNode = pickZone.children[pickZone.childrenCount - 1]
-      console.log(newNode)
       cc.tween(newNode)
         .to(0.5, { x: -950, y: -940, skewX: 0, scaleY: 0.7 }, { easing: 'quadInOut' })
         .start();
@@ -151,7 +150,6 @@ export default class CardZone extends cc.Component {
     } else {
       const pickZone = this.node.getChildByName("OpponentPickZone")
       newNode = pickZone.children[pickZone.childrenCount - 1]
-      console.log(newNode)
       cc.tween(newNode)
         .to(0.5, { x: -120, y: 1360, skewX: 0, scaleY: 0.7 }, { easing: 'quadInOut' })
         .start();

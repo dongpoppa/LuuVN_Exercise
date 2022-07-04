@@ -11,17 +11,17 @@ const { ccclass } = cc._decorator;
 export default class BattleZone extends cc.Component {
 
   cards: cc.Node[] = [];
-
   destroyCard: cc.Node[] = []
-
   destroyCardX = -735
   destroyCardY = 3
 
   addToCard(card: cc.Node, handZoneNodeY: number) {
-    card.getChildByName("CardManaIcon").getComponent("ShowUp").isShow = false
     this.node.addChild(card)
+    card.getChildByName("CardManaIcon").getComponent("ShowUp").isShow = false
     card.setPosition(card.x, card.y - (this.node.y - handZoneNodeY))
+    card.angle = 0
     this.cards.push(card)
+    this.reSoftCard()
   }
 
   reSoftCard() {

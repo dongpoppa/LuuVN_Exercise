@@ -18,22 +18,16 @@ export default class HandZone extends cc.Component {
   @property(cc.Node)
   cardZone: CardZone = null
 
-  @property(cc.Boolean)
+  @property(cc.Boolean)       
   isOpponent: boolean = true
 
   cards: cc.Node[] = [];
 
   currentCardAtr: CardAtribute = new CardAtribute()
-  handZonePos: HandZonePos = new HandZonePos()
 
   onLoad() {
     const cardRange = (this.cards.length - 1) / 2
     let cardIndexs = this.range(-cardRange, cardRange, 1)
-
-    this.handZonePos.minX = -this.node.width / 2
-    this.handZonePos.maxX = this.node.width / 2
-    this.handZonePos.minY = -this.node.height / 2
-    this.handZonePos.maxY = this.node.height / 2
 
     this.cards.forEach((node, index) => {
       const x = cardIndexs[index] * 100 * Math.min(5 / cardRange, 1)
@@ -42,6 +36,7 @@ export default class HandZone extends cc.Component {
       node.setScale(0.7, 0.7)
       node.angle = -(cardIndexs[index] * 4)
       this.isOpponent ? '' : node.getChildByName("CardManaIcon").getComponent("ShowUp").isShow = true
+      this.isOpponent ? '' : node.getComponent("CardTouchEvent").handZone = this
       this.node.addChild(node)
       setTimeout(() => {
         cc.tween(node)
@@ -50,8 +45,6 @@ export default class HandZone extends cc.Component {
           .start()
       }, 100 * index)
 
-      this.isOpponent ? '' : node.on(cc.Node.EventType.TOUCH_START, this.scaleUp, this)
-      this.isOpponent ? '' : node.on(cc.Node.EventType.TOUCH_END, this.scaleDown, this)
     })
   }
 
@@ -63,14 +56,11 @@ export default class HandZone extends cc.Component {
     const index = cardIndexs.length - 1
 
     const x = cardIndexs[index] * 100 * Math.min(5 / cardRange, 1)
-    const y = Math.abs(cardIndexs[index]) * -10 * Math.min(5 / cardRange, 1)
 
     card.setPosition(x, -230, index)
     card.setScale(0.7, 0.7)
     this.isOpponent ? '' : card.getChildByName("CardManaIcon").getComponent("ShowUp").isShow = true
-
-    this.isOpponent ? '' : card.on(cc.Node.EventType.TOUCH_START, this.scaleUp, this)
-    this.isOpponent ? '' : card.on(cc.Node.EventType.TOUCH_END, this.scaleDown, this)
+    this.isOpponent ? '' : card.getComponent("CardTouchEvent").handZone = this
     this.node.addChild(card)
 
   }
@@ -87,65 +77,15 @@ export default class HandZone extends cc.Component {
     })
   }
 
-  scaleUp(event: cc.Event.EventMouse) {
-    const node = event.currentTarget
-    this.currentCardAtr.angle = node.angle
-    this.currentCardAtr.x = node.x
-    this.currentCardAtr.y = node.y
-    node.off(cc.Node.EventType.TOUCH_MOVE, this.moveCard, this)
-    cc.tween(node)
-      .to(0.05, { y: this.currentCardAtr.y <= 0 ? 40 : node.y, scale: 1, zIndex: 100, angle: 0 }, { easing: 'quadInOut' })
-      .start();
-    this.isOpponent ? '' : node.on(cc.Node.EventType.TOUCH_END, this.scaleDown, this)
-    this.isOpponent ? '' : node.on(cc.Node.EventType.TOUCH_MOVE, this.moveCard, this)
-  }
-
-  scaleDown(event: cc.Event.EventMouse) {
-    const node = event.currentTarget
-    cc.tween(node)
-      .to(0.1, { y: this.currentCardAtr.y, scale: 0.7, zIndex: node.z, angle: this.currentCardAtr.angle }, { easing: 'quadInOut' })
-      .start();
-    this.unChooseCard(event)
-  }
-
-  unChooseCard(event: cc.Event.EventMouse) {
-    const node = event.currentTarget
-    if (
-      node.x < this.handZonePos.minX ||
-      node.x > this.handZonePos.maxX ||
-      node.y < this.handZonePos.minY ||
-      node.y > this.handZonePos.maxY
-    ) {
-      // go to battle zone
-      cc.log('go to battle zone')
-      this.battleZone.getComponent("BattleZone").addToCard(cc.instantiate(node), this.node.y)
-      this.battleZone.getComponent("BattleZone").reSoftCard()
-      this.cards = this.cards.filter(item => item.name !== node.name)
-      node.destroy()
-      this.cardZone.getComponent("CardZone").addNewCard()
-      setTimeout(() => {
-        this.reSoftCard()
-      }, 500)
-
-    } else {
-      // return to hand zone
-      cc.log('return to hand zone')
-      cc.tween(node)
-        .to(0.1, { scale: 0.7 }, { easing: 'quadInOut' })
-        .start();
-      node.off(cc.Node.EventType.TOUCH_END, this.scaleDown, this)
-    }
-    this.reSoftCard()
-    node.off(cc.Node.EventType.TOUCH_MOVE, this.moveCard, this)
-  }
-
-  moveCard(event: cc.Event.EventMouse) {
-    const x = event.currentTarget.x + event.getDeltaX()
-    const y = event.currentTarget.y + event.getDeltaY()
-    this.currentCardAtr.angle = 0
-    this.currentCardAtr.x = x
-    this.currentCardAtr.y = y
-    event.currentTarget.setPosition(x, y, 0)
+  goToBattleZone(node: cc.Node) {
+    cc.log('go to battle zone')
+    this.node.removeChild(node)
+    this.cards = this.cards.filter(item => item.name !== node.name)
+    this.battleZone.getComponent("BattleZone").addToCard(node, this.node.y)
+    this.cardZone.getComponent("CardZone").addNewCard()
+    setTimeout(() => {
+      this.reSoftCard()
+    }, 500)
   }
 
   range(start: number, stop: number, step: number) {
