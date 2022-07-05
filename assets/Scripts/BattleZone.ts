@@ -5,7 +5,7 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
-const { ccclass } = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class BattleZone extends cc.Component {
@@ -15,9 +15,12 @@ export default class BattleZone extends cc.Component {
   destroyCardX = -735
   destroyCardY = 3
 
+  @property(cc.Integer)
+  cardOnBoard: number = 4
+
   addToCard(card: cc.Node, handZoneNodeY: number) {
+    card.getChildByName("CardManaIcon").destroy()
     this.node.addChild(card)
-    card.getChildByName("CardManaIcon").getComponent("ShowUp").isShow = false
     card.setPosition(card.x, card.y - (this.node.y - handZoneNodeY))
     card.angle = 0
     this.cards.push(card)
@@ -25,15 +28,15 @@ export default class BattleZone extends cc.Component {
   }
 
   reSoftCard() {
-    if (this.cards.length > 5) {
+    if (this.cards.length > this.cardOnBoard) {
       this.destroyCard.push(this.cards.shift())
-      if (this.destroyCard.length > 5) this.destroyCard.shift();
+      if (this.destroyCard.length > this.cardOnBoard) this.destroyCard.shift();
 
       this.destroyCard.forEach((node, index) => {
         const destroyCardX = this.destroyCardX - (4 * index)
         const destroyCardY = this.destroyCardY + (4 * index)
 
-        if (index === 4 || this.destroyCard.length <= 5) {
+        if (index === 4 || this.destroyCard.length <= this.cardOnBoard) {
           cc.tween(node)
             .to(0.5, { x: destroyCardX, y: destroyCardY, scaleX: 0.74, scaleY: 0.5, skewX: 21 }, { easing: 'quadInOut' })
             .call(() => {

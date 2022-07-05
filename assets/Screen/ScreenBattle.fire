@@ -1727,12 +1727,12 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": 90
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 980,
-      "height": 210
+      "width": 900,
+      "height": 360
     },
     "_id": "24o4vRbS5Oda/QMtVTVgT/"
   },
@@ -1744,6 +1744,7 @@
       "__id__": 33
     },
     "_enabled": true,
+    "cardOnBoard": 4,
     "_id": "e9n61vb3lBHJwCHDybk3M6"
   },
   {

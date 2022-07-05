@@ -35,7 +35,6 @@ export default class HandZone extends cc.Component {
       node.setPosition(x, -230, index)
       node.setScale(0.7, 0.7)
       node.angle = -(cardIndexs[index] * 4)
-      this.isOpponent ? '' : node.getChildByName("CardManaIcon").getComponent("ShowUp").isShow = true
       this.isOpponent ? '' : node.getComponent("CardTouchEvent").handZone = this
       this.node.addChild(node)
       setTimeout(() => {
@@ -59,7 +58,6 @@ export default class HandZone extends cc.Component {
 
     card.setPosition(x, -230, index)
     card.setScale(0.7, 0.7)
-    this.isOpponent ? '' : card.getChildByName("CardManaIcon").getComponent("ShowUp").isShow = true
     this.isOpponent ? '' : card.getComponent("CardTouchEvent").handZone = this
     this.node.addChild(card)
 

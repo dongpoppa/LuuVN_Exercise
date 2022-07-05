@@ -38,7 +38,6 @@ export default class CardTouchEvent extends cc.Component {
 
   onCollisionExit(otherCollider: cc.BoxCollider, selfCollider: cc.BoxCollider) {
     this.isEnterBatteZone = false
-    console.log("exit")
   }
 
   scaleUp(event: cc.Event.EventMouse) {
