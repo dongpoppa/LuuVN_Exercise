@@ -1432,6 +1432,12 @@
       "__id__": 1
     },
     "_enabled": true,
+    "chooseArrow": {
+      "__uuid__": "2225da7c-48ad-4b5c-bf3c-749579ca881a"
+    },
+    "cardBorderGlow": {
+      "__uuid__": "8461e69c-8af3-421e-956c-48beb57efaef"
+    },
     "_id": ""
   },
   {
