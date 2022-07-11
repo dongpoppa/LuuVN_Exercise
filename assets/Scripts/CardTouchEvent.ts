@@ -93,8 +93,7 @@ export default class CardTouchEvent extends cc.Component {
 
     //add arrow
     const arrow = cc.instantiate(this.chooseArrow)
-    const nodeSpace = (this.node.convertTouchToNodeSpaceAR(event.touch))
-    arrow.setPosition(nodeSpace.x, nodeSpace.y)
+    arrow.setPosition(0,0)
     arrow.zIndex = -1
     this.currentArrow = arrow
     this.node.addChild(arrow)
@@ -109,10 +108,15 @@ export default class CardTouchEvent extends cc.Component {
   }
 
   controlArrow(event: cc.Event.EventTouch) {
+    //data
+    const chooseArrow = this.currentArrow.getChildByName("ChooseArrow");
+    const spineArrow = chooseArrow.getChildByName("SpineArrow");
+    const arrowHeight = spineArrow.height - 150;
+
     //get current x,y
-    const nodeSpace = (this.node.convertTouchToNodeSpaceAR(event.touch))
-    let x = nodeSpace.x
-    let y = nodeSpace.y
+    const nodeSpace = (this.node.convertTouchToNodeSpaceAR(event.touch));
+    let x = nodeSpace.x;
+    let y = nodeSpace.y;
 
     //set caculate and set angle for arrow
     const firstAngle = Math.atan2(1, 0);
@@ -122,16 +126,18 @@ export default class CardTouchEvent extends cc.Component {
     this.currentArrow.angle = angle
 
     //set posotion for arrow
-    const isOutOfHeight = Math.pow(this.currentArrow.height, 2) <= Math.pow(Math.abs(x), 2) + Math.pow(Math.abs(y), 2)
+    const isOutOfHeight = Math.pow(arrowHeight, 2) <= Math.pow(Math.abs(x), 2) + Math.pow(Math.abs(y), 2)
 
     if (isOutOfHeight) {
       const xm = nodeSpace.x < 0 ? -1 : 1
       const ym = nodeSpace.y < 0 ? -1 : 1
 
-      x = xm * Math.abs(Math.sin(angle * Math.PI / 180) * this.currentArrow.height);
-      y = ym * Math.abs(Math.cos(angle * Math.PI / 180) * this.currentArrow.height);
+      x = xm * Math.abs(Math.sin(angle * Math.PI / 180) * arrowHeight);
+      y = ym * Math.abs(Math.cos(angle * Math.PI / 180) * arrowHeight);
     }
-    this.currentArrow.setPosition(x, y)
+
+    const height = Math.sqrt(Math.pow(Math.abs(x), 2) + Math.pow(Math.abs(y), 2))
+    chooseArrow.y = height
   }
 
   moveCard(event: cc.Event.EventTouch) {
